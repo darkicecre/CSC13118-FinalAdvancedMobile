@@ -1,3 +1,4 @@
+import 'package:final_advanced_mobile/pages/CoursesPage/ListCourses.dart';
 import 'package:flutter/material.dart';
 
 class CoursesTab extends StatefulWidget {
@@ -58,9 +59,58 @@ class _CoursesTabState extends State<CoursesTab> {
             "Intermedia - 9 Lessons"
         ),
 
+      ],
+      "English For Beginners":[
+        CustomItem(
+            "https://camblycurriculumicons.s3.amazonaws.com/5e2b895e541a832674533c18?h=d41d8cd98f00b204e9800998ecf8427e",
+            "Basic Conversation Topics",
+            "Gain confidence speaking about familiar topics",
+            "Beginner - 10 Lessons"
+        ),
+        CustomItem(
+            "https://camblycurriculumicons.s3.amazonaws.com/5e2b99d0c4288f294426b643?h=d41d8cd98f00b204e9800998ecf8427e",
+            "Intermediate Conversation Topics",
+            "Express your ideas and opinions",
+            "Intermediate - 9 Lessons"
+        ),
+        CustomItem(
+            "https://camblycurriculumicons.s3.amazonaws.com/5e2b99e60b114e9a327ceb66?h=d41d8cd98f00b204e9800998ecf8427e",
+            "Advanced Conversation Topics",
+            "Explore complex topics relevant to modern life",
+            "Advanced - 10 Lessons"
+        ),
+        CustomItem(
+            "https://camblycurriculumicons.s3.amazonaws.com/5e7e51cca52da4ab4bd958e6?h=d41d8cd98f00b204e9800998ecf8427e",
+            "English Conversation 102",
+            "Even more approachable lessons for absolute beginners",
+            "Beginner - 9 Lessons"
+        ),
+        CustomItem(
+            "https://camblycurriculumicons.s3.amazonaws.com/5fd9240c4143a75bf6c2de8b?h=d41d8cd98f00b204e9800998ecf8427e",
+            "Intermediate Conversation Topics Part 2",
+            "More practice expressing your ideas and opinions in English",
+            "Intermediate - 9 Lessons"
+        ),
+        CustomItem(
+            "https://camblycurriculumicons.s3.amazonaws.com/609fdd6fb95e4527664a7252?h=d41d8cd98f00b204e9800998ecf8427e",
+            "English Conversation 101",
+            "Approachable lessons for absolute beginners",
+            "Intermediate - 9 Lessons"
+        ),
+
       ]
     },
-    "E-Book": {},
+    "E-Book": {
+      "Book": [
+        CustomItem(
+            "https://api.app.lettutor.com/file/be4c3df8-3b1b-4c8f-a5cc-75a8e2e6626afilewhat_a_world.jpeg",
+            "What a world 1",
+            "For teenagers who have an excellent vocabulary background and brilliant communication skills.",
+            "Beginner"
+        ),
+
+      ]
+    },
     "Interactive E-Book": {}
   };
   
@@ -90,7 +140,8 @@ class _CoursesTabState extends State<CoursesTab> {
               },
             ).toList(),
           ),
-          Text(_value??"")
+          ListCourses(listItems:  data[_value]??const {},),
+          SizedBox(height: 80,)
         ],
       ),
     );
