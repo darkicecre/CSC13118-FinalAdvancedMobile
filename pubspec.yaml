@@ -35,6 +35,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.5
+  font_awesome_flutter: ^10.5.0
+  multiselect: ^0.1.0
+  time_range_picker: ^2.2.0
+  country_flags: ^2.1.0
+  flutter_rating_bar: ^4.0.1
+  number_paginator: ^0.4.0
+  readmore: ^2.1.0
+  video_player: ^2.4.10
+  flick_video_player: ^0.5.0
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +69,10 @@ flutter:
   assets:
     - assets/images/lettutor_logo.svg
     - assets/images/usa_flag.svg
+    - assets/images/login_banner.png
+    - assets/images/calendar.svg
+    - assets/images/history.svg
+    - assets/images/courses.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Comment extends StatelessWidget {
-  const Comment({super.key,
+class CommentWidget extends StatelessWidget {
+  const CommentWidget({super.key,
     this.avatar= "https://sandbox.api.lettutor.com/avatar/f569c202-7bbf-4620-af77-ecc1419a6b28avatar1686033849227.jpeg",
     this.name = "Pham Hoang Hai",
     this.time = "17 hours ago",

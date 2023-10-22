@@ -26,7 +26,7 @@ class _ExpandableTextState extends State<ExpandableText> {
           )),
       widget.isExpanded
           ? new Container()
-          : new FlatButton(
+          : new ElevatedButton(
           child: const Text('...'),
           onPressed: () => setState(() => widget.isExpanded = true))
     ]);
