@@ -1,4 +1,5 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/pages/ReUse/Countries.dart';
 import 'package:final_advanced_mobile/pages/ReUse/ListChoiced.dart';
 import 'package:final_advanced_mobile/pages/TutorPage/tutorInfo.dart';
@@ -10,42 +11,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class TutorTile extends StatefulWidget {
   const TutorTile(
       {super.key,
-      this.avatar = '',
-      this.bio = '',
-      this.country = '',
-      this.name = '',
-      this.id = '',
-      this.price = 0,
-      this.rating = 0,
-      this.schedulesTimes = 0});
+        this.tutor = const Tutor("", "", "country", "id", "", 0, 0, 0)
+      });
 
-  final String avatar;
-  final String bio;
-  final String country;
-  final String id;
-  final String name;
-  final int price;
-  final double rating;
-  final int schedulesTimes;
+  final Tutor tutor;
   @override
   State<TutorTile> createState() => _TutorTileState();
 }
 
 class _TutorTileState extends State<TutorTile> {
   var countries = Countries();
-  List<String> lists = [
-    'English for Business',
-    'English for kids',
-    'STARTERS',
-    'Conversational',
-    'MOVERS',
-    'FLYERS',
-    'KET',
-    'PET',
-    'IELTS',
-    'TOEFL',
-    'TOEIC'
-  ];
+  List<String> lists = listItemTiles;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,7 +46,7 @@ class _TutorTileState extends State<TutorTile> {
                   width: 70,
                   height: 70,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(widget.avatar),
+                    backgroundImage: NetworkImage(widget.tutor.avatar),
                   ),
                 ),
               ),
@@ -97,9 +73,7 @@ class _TutorTileState extends State<TutorTile> {
             ],
           ),
           TutorInfo(
-              country: widget.country,
-              name: widget.name,
-              rating: widget.rating),
+              tutor: widget.tutor),
           Container(
             margin: EdgeInsets.only(left: 7, top: 7, bottom: 7),
             child: ListChoiced(lists: lists),
@@ -107,7 +81,7 @@ class _TutorTileState extends State<TutorTile> {
           Container(
             margin: EdgeInsets.only(left: 20, right: 15, bottom: 25),
             child: Text(
-              widget.bio,
+              widget.tutor.bio,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),

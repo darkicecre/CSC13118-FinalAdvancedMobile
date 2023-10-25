@@ -1,3 +1,4 @@
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:flutter/material.dart';
 
 class TutorChoice extends StatefulWidget {
@@ -9,20 +10,7 @@ class TutorChoice extends StatefulWidget {
 
 class _TutorChoiceState extends State<TutorChoice> {
   int? _value = 1;
-  List<String> lists = [
-    'All',
-    'English for kids',
-    'English for Business',
-    'Conversational',
-    'STARTERS',
-    'MOVERS',
-    'FLYERS',
-    'KET',
-    'PET',
-    'IELTS',
-    'TOEFL',
-    'TOEIC'
-  ];
+  List<String> lists = listChoices;
 
   @override
   Widget build(BuildContext context) {

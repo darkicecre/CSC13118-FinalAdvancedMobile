@@ -1,14 +1,11 @@
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/pages/CoursesPage/CoursesSearch.dart';
 import 'package:final_advanced_mobile/pages/CoursesPage/CoursesTab.dart';
 import 'package:final_advanced_mobile/pages/HistoryPage/HistoryPage.dart';
-import 'package:final_advanced_mobile/pages/HistoryPage/HistoryWidget.dart';
 import 'package:final_advanced_mobile/pages/ReUse/DemoList.dart';
 import 'package:final_advanced_mobile/pages/ReUse/MyAppBar.dart';
 import 'package:final_advanced_mobile/pages/ReUse/MyFloatingActionButton.dart';
-import 'package:final_advanced_mobile/pages/SchedulePage/SchedulePage.dart';
-import 'package:final_advanced_mobile/pages/TutorPage/tutorList.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});

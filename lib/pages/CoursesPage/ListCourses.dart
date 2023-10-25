@@ -1,3 +1,4 @@
+import 'package:final_advanced_mobile/pages/CourseDetailPage/CoursesDetailPage.dart';
 import 'package:final_advanced_mobile/pages/CoursesPage/CoursesTab.dart';
 import 'package:flutter/material.dart';
 
@@ -42,46 +43,58 @@ class _ListCoursesState extends State<ListCourses> {
                       children: List<Widget>.generate(
                           widget.listItems.values.elementAt(index).length,
                           (int itemIdx) {
-                            return Container(
-                              margin: EdgeInsets.only(left: 15,right: 15,top: 15),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                              ),
-                              clipBehavior: Clip.hardEdge,
-                              child: Column(
-                                children: [
-                                  Image.network(widget.listItems.values.elementAt(index)[itemIdx].image,),
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(widget.listItems.values.elementAt(index)[itemIdx].title,
-                                      style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),
+                            return InkWell(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const CoursesDetailPage()
+                                      ,settings: RouteSettings(
+                                      arguments: widget.listItems.values.elementAt(index)[itemIdx]
+                                  )
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(left: 15,right: 15,top: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                clipBehavior: Clip.hardEdge,
+                                child: Column(
+                                  children: [
+                                    Image.network(widget.listItems.values.elementAt(index)[itemIdx].image,),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(widget.listItems.values.elementAt(index)[itemIdx].title,
+                                        style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),
+                                      ),
+                                      margin: EdgeInsets.only(top: 20,left: 20,right: 20),
                                     ),
-                                    margin: EdgeInsets.only(top: 20,left: 20,right: 20),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(widget.listItems.values.elementAt(index)[itemIdx].description,
-                                      style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(widget.listItems.values.elementAt(index)[itemIdx].description,
+                                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14),
+                                      ),
+                                      margin: EdgeInsets.only(top: 10,left: 20,right: 10),
                                     ),
-                                    margin: EdgeInsets.only(top: 10,left: 20,right: 10),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(widget.listItems.values.elementAt(index)[itemIdx].subTitle,
-                                      style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(widget.listItems.values.elementAt(index)[itemIdx].subTitle,
+                                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14),
+                                      ),
+                                      margin: EdgeInsets.only(top: 20,left: 20,right: 10,bottom: 5),
                                     ),
-                                    margin: EdgeInsets.only(top: 20,left: 20,right: 10,bottom: 5),
-                                  ),
-                                  Container(
-                                    child: SizedBox(),
-                                    color: Color.fromRGBO(216, 216, 216, 1),
-                                    height: 5,
-                                    width: double.infinity,
-                                  ),
+                                    Container(
+                                      child: SizedBox(),
+                                      color: Color.fromRGBO(216, 216, 216, 1),
+                                      height: 5,
+                                      width: double.infinity,
+                                    ),
 
-                                ],
+                                  ],
+                                ),
+                                
                               ),
-                              
                             );
                           }),
                     )

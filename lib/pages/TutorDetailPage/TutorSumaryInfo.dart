@@ -1,24 +1,22 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/pages/ReUse/Countries.dart';
-import 'package:final_advanced_mobile/pages/ReUse/ExpandableText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:readmore/readmore.dart';
 
 class TutorSumaryInfo extends StatefulWidget {
-  const TutorSumaryInfo({super.key});
+  const TutorSumaryInfo({super.key,
+    this.tutor = const Tutor("avatar", "bio", "country", "id", "name", 0, 0, 0)
+  });
 
+  final Tutor tutor;
   @override
   State<TutorSumaryInfo> createState() => _TutorSumaryInfoState();
 }
 
 class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
-  String avatar =
-      "https://sandbox.api.lettutor.com/avatar/4d54d3d7-d2a9-42e5-97a2-5ed38af5789aavatar1684484879187.jpg";
-  String name = "Keegan";
-  double rating = 4.1;
   int countRating = 121;
-  String country = "TN";
 
   var countries = Countries();
 
@@ -37,7 +35,7 @@ class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
                   width: 110,
                   height: 110,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(avatar),
+                    backgroundImage: NetworkImage(widget.tutor.avatar),
                   ),
                 ),
               ),
@@ -49,7 +47,7 @@ class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
                       width: double.infinity,
                       margin: EdgeInsets.only(left: 10, bottom: 5),
                       child: Text(
-                        name,
+                        widget.tutor.name,
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w600),
                       ),
@@ -61,7 +59,7 @@ class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
                         children: [
                           RatingBar.builder(
                             itemSize: 20,
-                            initialRating: rating,
+                            initialRating: widget.tutor.rating,
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -92,13 +90,13 @@ class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
                         Container(
                           margin: EdgeInsets.only(left: 10, right: 5),
                           child: CountryFlag.fromCountryCode(
-                            country,
+                            widget.tutor.country,
                             height: 17,
                             width: 22,
                           ),
                         ),
                         Text(
-                          countries.lists[country] ?? '',
+                          countries.lists[widget.tutor.country] ?? '',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w300),
                         )

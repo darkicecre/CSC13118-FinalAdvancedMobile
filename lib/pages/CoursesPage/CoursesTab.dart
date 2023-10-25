@@ -59,7 +59,7 @@ class _CoursesTabState extends State<CoursesTab> {
             "Intermedia - 9 Lessons"
         ),
 
-      ],
+      ].toList(),
       "English For Beginners":[
         CustomItem(
             "https://camblycurriculumicons.s3.amazonaws.com/5e2b895e541a832674533c18?h=d41d8cd98f00b204e9800998ecf8427e",
@@ -98,7 +98,7 @@ class _CoursesTabState extends State<CoursesTab> {
             "Intermediate - 9 Lessons"
         ),
 
-      ]
+      ].toList()
     },
     "E-Book": {
       "Book": [
@@ -109,7 +109,7 @@ class _CoursesTabState extends State<CoursesTab> {
             "Beginner"
         ),
 
-      ]
+      ].toList()
     },
     "Interactive E-Book": {}
   };

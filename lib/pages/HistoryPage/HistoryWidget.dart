@@ -1,10 +1,8 @@
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/pages/HistoryPage/HistoryPage.dart';
 import 'package:final_advanced_mobile/pages/HistoryPage/HistoryTutorReview.dart';
-import 'package:final_advanced_mobile/pages/SchedulePage/SchedulePage.dart';
 import 'package:final_advanced_mobile/pages/TutorPage/tutorInfo.dart';
-import 'package:final_advanced_mobile/pages/TutorPage/tutorList.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HistoryWidget extends StatefulWidget {
   const HistoryWidget(
@@ -70,8 +68,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                 Expanded(
                     flex: 7,
                     child: TutorInfo(
-                      country: widget.tutor.country,
-                      name: widget.tutor.name,
+                      tutor:widget.tutor ,
                       isHideRating: true,
                       isShowActionDirectMessage: true,
                     ))

@@ -1,5 +1,7 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/pages/ReUse/Countries.dart';
+import 'package:final_advanced_mobile/pages/TutorDetailPage/TutorDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,16 +9,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class TutorInfo extends StatefulWidget {
   const TutorInfo({
     super.key,
-    this.country = '',
-    this.name = '',
-    this.rating = 0,
+    this.tutor = const Tutor("avatar", "bio", "country", "id", "name", 0, 0, 0),
     this.isHideRating = false,
     this.isShowActionDirectMessage = false,
   });
 
-  final String name;
-  final String country;
-  final double rating;
+  final Tutor tutor;
   final bool isHideRating;
   final bool isShowActionDirectMessage;
 
@@ -34,9 +32,19 @@ class _TutorInfoState extends State<TutorInfo> {
         Container(
           width: double.infinity,
           margin: EdgeInsets.only(left: 25),
-          child: Text(
-            widget.name,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+          child: InkWell(
+            child: Text(
+              widget.tutor.name,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            ),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TutorDetailPage(),settings: RouteSettings(
+                  arguments: widget.tutor
+                )),
+              );
+            },
           ),
         ),
         Container(
@@ -46,13 +54,13 @@ class _TutorInfoState extends State<TutorInfo> {
               Container(
                 margin: EdgeInsets.only(left: 25, right: 5),
                 child: CountryFlag.fromCountryCode(
-                  widget.country,
+                  widget.tutor.country,
                   height: 17,
                   width: 22,
                 ),
               ),
               Text(
-                countries.lists[widget.country] ?? '',
+                countries.lists[widget.tutor.country] ?? '',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
               )
             ],
@@ -65,7 +73,7 @@ class _TutorInfoState extends State<TutorInfo> {
                 margin: EdgeInsets.only(left: 25, top: 5),
                 child: RatingBar.builder(
                   itemSize: 15,
-                  initialRating: widget.rating,
+                  initialRating: widget.tutor.rating,
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: true,

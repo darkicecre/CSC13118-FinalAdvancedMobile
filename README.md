@@ -1,16 +1,3 @@
-# final_advanced_mobile
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Mã số sinh viên: 19120075
+Họ và tên: Võ Phi Minh Hiếu
+Link Widget Tree Diagram: https://drive.google.com/file/d/1Swvc91Dy2k44x0TF93ovgTGml3tcfWgO/view
