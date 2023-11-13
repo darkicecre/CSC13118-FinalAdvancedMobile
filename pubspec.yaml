@@ -42,6 +42,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   number_paginator: ^0.4.0
   readmore: ^2.1.0
+  provider: ^6.0.1
   video_player: ^2.4.10
   flick_video_player: ^0.5.0
 
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/images/lettutor_logo.svg
     - assets/images/usa_flag.svg
+    - assets/images/vn_flag.svg
     - assets/images/login_banner.png
     - assets/images/calendar.svg
     - assets/images/history.svg
