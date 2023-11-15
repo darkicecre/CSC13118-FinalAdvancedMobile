@@ -9,7 +9,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class TutorInfo extends StatefulWidget {
   const TutorInfo({
     super.key,
-    this.tutor = const Tutor("avatar", "bio", "country", "id", "name", 0, 0, 0),
+    this.tutor = const Tutor("avatar", "bio", "country", "id", "name", 0, 0, 0,
+        [],[]),
     this.isHideRating = false,
     this.isShowActionDirectMessage = false,
   });

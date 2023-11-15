@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:number_paginator/number_paginator.dart';
 
 class TutorList extends StatefulWidget {
-  const TutorList({super.key});
+  const TutorList({super.key, required this.tutors});
 
+  final List<Tutor> tutors;
   @override
   State<TutorList> createState() => _TutorListState();
 }
 
 
 class _TutorListState extends State<TutorList> {
-  List<Tutor> tutors = tutorLists;
+  // List<Tutor> tutors = tutorLists;
 
   @override
   Widget build(BuildContext context) {
     int _numPages = 4;
     int _currentPage = 3;
     final NumberPaginatorController _controller = NumberPaginatorController();
-
 
     return Container(
       margin: EdgeInsets.all(30),
@@ -34,10 +34,10 @@ class _TutorListState extends State<TutorList> {
           ),
           Column(
             children: List<Widget>.generate(
-              tutors.length,
+              widget.tutors.length,
               (int index) {
                 return TutorTile(
-                  tutor: tutors[index]);
+                  tutor: widget.tutors[index]);
               },
             ).toList(),
           ),

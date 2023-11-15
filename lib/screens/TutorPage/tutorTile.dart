@@ -11,7 +11,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class TutorTile extends StatefulWidget {
   const TutorTile(
       {super.key,
-        this.tutor = const Tutor("", "", "country", "id", "", 0, 0, 0)
+        this.tutor = const Tutor("", "", "country", "id", "", 0, 0, 0,
+            [],[])
       });
 
   final Tutor tutor;

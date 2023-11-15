@@ -42,7 +42,8 @@ class _HistoryPageState extends State<HistoryPage> {
       "Keegan",
       50000,
       4.116666666666666,
-      373);
+      373,
+      [],[]);
 
   List<History> histories = [
     new History("Fri, 20 Oct 23", 1, "00:30 - 00:55", "vcvsvac",null),

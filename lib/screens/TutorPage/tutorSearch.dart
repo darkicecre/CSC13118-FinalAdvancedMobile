@@ -4,13 +4,38 @@ import 'package:final_advanced_mobile/screens/TutorPage/tutorDatePicker.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/tutorTimeRangePicker.dart';
 import 'package:flutter/material.dart';
 
-class TutorSearch extends StatelessWidget {
-  const TutorSearch({super.key});
+class TutorSearch extends StatefulWidget {
+  const TutorSearch(
+      {super.key,
+      required this.tutorNameController,
+      required this.dateController,
+      required this.dateRangeController,
+      required this.onTap,
+      required this.nationalChange,
+      required this.specialistChange,
+      this.nationalOptions = const [],
+      this.specialistOptions = const [],
+      required this.resetSearch
+      });
 
+  final TextEditingController tutorNameController;
+  final TextEditingController dateController;
+  final TextEditingController dateRangeController;
+  final List<String> nationalOptions;
+  final List<String> specialistOptions;
+  final VoidCallback onTap;
+  final VoidCallback resetSearch;
+  final ValueSetter nationalChange;
+  final ValueSetter specialistChange;
+  @override
+  State<TutorSearch> createState() => _TutorSearchState();
+}
+
+class _TutorSearchState extends State<TutorSearch> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 30,left: 30,right: 30),
+      margin: EdgeInsets.only(top: 30, left: 30, right: 30),
       width: double.infinity,
       child: Column(
         children: [
@@ -30,6 +55,8 @@ class TutorSearch extends StatelessWidget {
             height: 33,
             margin: EdgeInsets.only(top: 20),
             child: TextField(
+              controller: widget.tutorNameController,
+              onSubmitted: (value) => {widget.onTap()},
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(top: 5, left: 12),
                   enabledBorder: OutlineInputBorder(
@@ -46,9 +73,12 @@ class TutorSearch extends StatelessWidget {
                   )),
             ),
           ),
-          MultiSelectChip(options: ['Foreign Tutor',
-            'Vietnamese Tutor',
-            'Native English Tutor'],placeholder: 'Select tutor nationally',),
+          MultiSelectChip(
+            options: widget.nationalOptions,
+            placeholder: 'Select tutor nationally',
+            selectedCalback: widget.nationalChange,
+            isGenerateAll: true,
+          ),
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(top: 10),
@@ -61,11 +91,20 @@ class TutorSearch extends StatelessWidget {
                   fontFamily: 'Poppins'),
             ),
           ),
-          TutorDatePicker(),
-          TutorTimeRangePicker(),
-          TutorChoice(),
+          TutorDatePicker(
+            dateController: widget.dateController,
+            onTap: widget.onTap,
+          ),
+          TutorTimeRangePicker(
+            dateRangeController: widget.dateRangeController,
+            onTap: widget.onTap,
+          ),
+          TutorChoice(
+            options: widget.specialistOptions,
+            selectedCalback: widget.specialistChange,
+          ),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: widget.resetSearch,
             style: OutlinedButton.styleFrom(
               side: BorderSide(width: 1.0, color: Colors.blue),
             ),
@@ -74,7 +113,9 @@ class TutorSearch extends StatelessWidget {
               style: TextStyle(color: Color.fromRGBO(64, 169, 255, 1)),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Divider(),
         ],
       ),

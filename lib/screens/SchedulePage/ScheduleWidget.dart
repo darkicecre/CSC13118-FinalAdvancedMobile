@@ -17,7 +17,8 @@ class ScheduleWidget extends StatefulWidget {
           "Keegan",
           50000,
           4.116666666666666,
-          373)});
+          373,
+          [],[])});
 
   final Schedule schedule;
   final Tutor tutor;

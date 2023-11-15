@@ -31,7 +31,8 @@ class _SchedulePageState extends State<SchedulePage> {
   "Keegan",
   50000,
   4.116666666666666,
-  373);
+  373,
+      [],[]);
   List<Schedule> schedules = [
     new Schedule("Fri, 20 Oct 23", 1, "00:30 - 00:55", "vcvsvac", false),
     new Schedule("Sat, 21 Oct 23", 1, "01:00 - 01:25", "", true),

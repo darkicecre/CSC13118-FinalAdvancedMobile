@@ -3,21 +3,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 class TutorDatePicker extends StatefulWidget {
-  const TutorDatePicker({super.key});
+  const TutorDatePicker({super.key,required this.dateController, required this.onTap});
 
+  final TextEditingController dateController;
+  final VoidCallback onTap;
   @override
   State<TutorDatePicker> createState() => _TutorDatePickerState();
 }
 
 class _TutorDatePickerState extends State<TutorDatePicker> {
-  TextEditingController dateinput = TextEditingController();
-  //text editing controller for text field
-
-  @override
-  void initState() {
-    dateinput.text = ""; //set the initial value of text field
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +21,7 @@ class _TutorDatePickerState extends State<TutorDatePicker> {
       margin: EdgeInsets.only(top: 5),
       alignment: Alignment.centerLeft,
       child: TextField(
+        controller: widget.dateController,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(top: 5,left: 12),
             enabledBorder: OutlineInputBorder(
@@ -41,7 +36,7 @@ class _TutorDatePickerState extends State<TutorDatePicker> {
                     color: Color.fromRGBO(0, 113, 240,1)
                 )
             ),
-            hintText: dateinput.text == "" ? 'Enter tutor name...' : dateinput.text,
+            hintText: 'Enter tutoring date...',
             hintStyle: TextStyle(
               color: Color.fromRGBO(200, 200, 200, 1),
             ),
@@ -63,13 +58,11 @@ class _TutorDatePickerState extends State<TutorDatePicker> {
           );
 
           if(pickedDate != null ){
-            print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
             String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-            print(formattedDate); //formatted date output using intl package =>  2021-03-16
-            //you can implement different kind of Date Format here according to your requirement
 
             setState(() {
-              dateinput.text = formattedDate; //set output date to TextField value.
+              widget.dateController.text = formattedDate; //set output date to TextField value.
+              widget.onTap();
             });
           }else{
             print("Date is not selected");

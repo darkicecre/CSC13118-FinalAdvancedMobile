@@ -3,21 +3,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
 class TutorTimeRangePicker extends StatefulWidget {
-  const TutorTimeRangePicker({super.key});
+  const TutorTimeRangePicker({super.key,required this.dateRangeController,required this.onTap});
 
+  final TextEditingController dateRangeController;
+  final VoidCallback onTap;
   @override
   State<TutorTimeRangePicker> createState() => _TutorTimeRangePickerState();
 }
 
 class _TutorTimeRangePickerState extends State<TutorTimeRangePicker> {
-  TextEditingController dateinput = TextEditingController();
-  //text editing controller for text field
-
-  @override
-  void initState() {
-    dateinput.text = ""; //set the initial value of text field
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +21,7 @@ class _TutorTimeRangePickerState extends State<TutorTimeRangePicker> {
       margin: EdgeInsets.only(top: 5,bottom: 5),
       alignment: Alignment.centerLeft,
       child: TextField(
+        controller: widget.dateRangeController,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(top: 5, left: 12),
             enabledBorder: OutlineInputBorder(
@@ -36,9 +31,7 @@ class _TutorTimeRangePickerState extends State<TutorTimeRangePicker> {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25),
                 borderSide: BorderSide(color: Color.fromRGBO(0, 113, 240, 1))),
-            hintText: dateinput.text == ""
-                ? 'Start time    -    End time'
-                : dateinput.text,
+            hintText:'Start time    -    End time',
             hintStyle: TextStyle(
               color: Color.fromRGBO(200, 200, 200, 1),
             ),
@@ -52,16 +45,21 @@ class _TutorTimeRangePickerState extends State<TutorTimeRangePicker> {
             )),
         readOnly: true,
         onTap: () async {
-          TimeRange result = await showTimeRangePicker(context: context,interval: Duration(minutes: 30));
-          setState(() {
-            dateinput.text = result.startTime.hour.toString().padLeft(2, '0') +
-                ":" +
-                result.startTime.minute.toString().padLeft(2, '0') +
-                "    -    " +
-                result.endTime.hour.toString().padLeft(2, '0') +
-                ":" +
-                result.endTime.minute.toString().padLeft(2, '0');
-          });
+          try {
+            TimeRange result = await showTimeRangePicker(
+                context: context, interval: Duration(minutes: 30));
+            setState(() {
+              widget.dateRangeController.text = result.startTime.hour.toString().padLeft(2, '0') +
+                  ":" +
+                  result.startTime.minute.toString().padLeft(2, '0') +
+                  "    -    " +
+                  result.endTime.hour.toString().padLeft(2, '0') +
+                  ":" +
+                  result.endTime.minute.toString().padLeft(2, '0');
+              widget.onTap();
+            });
+          }catch(e){
+          }
         },
       ),
     );

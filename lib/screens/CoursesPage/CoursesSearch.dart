@@ -75,6 +75,7 @@ class _CoursesSearchState extends State<CoursesSearch> {
                         options: levels,
                         maxCharacter: 16,
                         placeholder: "Select level",
+                        selectedCalback: (val){},
                       )),
                 ),
                 Expanded(
@@ -85,6 +86,7 @@ class _CoursesSearchState extends State<CoursesSearch> {
                         options: categories,
                         maxCharacter: 16,
                         placeholder: "Select category",
+                        selectedCalback: (val){},
                       )),
                 ),
               ],
@@ -102,6 +104,7 @@ class _CoursesSearchState extends State<CoursesSearch> {
                         options: ['Level decreasing','Level ascending'],
                         maxCharacter: 16,
                         placeholder: "Sort by level",
+                        selectedCalback: (val){},
                       )),
                 ),
                 Expanded(child: SizedBox.shrink(),flex: 1,)

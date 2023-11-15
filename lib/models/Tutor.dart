@@ -1,3 +1,5 @@
+import 'package:final_advanced_mobile/models/DateRange.dart';
+
 class Tutor {
   final String avatar;
   final String bio;
@@ -7,8 +9,10 @@ class Tutor {
   final int price;
   final double rating;
   final int schedulesTimes;
+  final List<DateRange> availableDate;
+  final List<String> specialist;
   const Tutor(this.avatar, this.bio, this.country, this.id, this.name, this.price,
-      this.rating, this.schedulesTimes);
+      this.rating, this.schedulesTimes,this.availableDate,this.specialist);
 }
 
 List<Tutor> tutorLists = [
@@ -20,7 +24,10 @@ List<Tutor> tutorLists = [
       "Keegan",
       50000,
       4.116666666666666,
-      373),
+      373,
+      [new DateRange(DateTime(2023,11,16,1,0), DateTime(2023,11,16,3,30))],
+      ['English for kids', 'KET', 'PET', 'IELTS']
+  ),
   new Tutor(
       "https://variety.com/wp-content/uploads/2021/04/Avatar.jpg",
       "Recusandae dignissimos ut commodi et iste qui eum quos",
@@ -29,7 +36,10 @@ List<Tutor> tutorLists = [
       "Adelia Rice",
       0,
       3.8,
-      373),
+      373,
+      [new DateRange(DateTime(2023,11,13,1,0), DateTime(2023,11,13,3,30))],
+      ['TOEFL','Conversational', 'English for Business']
+  ),
   new Tutor(
       "https://i5.walmartimages.ca/images/Enlarge/841/666/6000205841666.jpg",
       "Rem neque quidem aliquam magni quasi et",
@@ -38,7 +48,10 @@ List<Tutor> tutorLists = [
       "Chad Ankunding",
       20,
       4.9,
-      373)
+      373,
+      [new DateRange(DateTime(2023,11,18,11,0), DateTime(2023,11,18,13,30))],
+      ['FLYERS','English for kids']
+  )
 ];
 
 List<String> listChoices = [

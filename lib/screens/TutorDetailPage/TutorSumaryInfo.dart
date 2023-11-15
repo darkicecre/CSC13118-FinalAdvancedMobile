@@ -7,7 +7,8 @@ import 'package:readmore/readmore.dart';
 
 class TutorSumaryInfo extends StatefulWidget {
   const TutorSumaryInfo({super.key,
-    this.tutor = const Tutor("avatar", "bio", "country", "id", "name", 0, 0, 0)
+    this.tutor = const Tutor("avatar", "bio", "country", "id", "name", 0, 0, 0,
+        [],[])
   });
 
   final Tutor tutor;

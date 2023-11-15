@@ -16,7 +16,8 @@ class HistoryWidget extends StatefulWidget {
             "Keegan",
             50000,
             4.116666666666666,
-            373)});
+            373,
+            [],[])});
 
   final History history;
   final Tutor tutor;
