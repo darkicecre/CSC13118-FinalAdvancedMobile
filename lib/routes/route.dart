@@ -1,8 +1,10 @@
+import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/screens/CoursesPage/CoursesPage.dart';
 import 'package:final_advanced_mobile/screens/LoginPage/LoginPage.dart';
 import 'package:final_advanced_mobile/screens/RegistPage/RegistPage.dart';
 import 'package:final_advanced_mobile/screens/ReserPassword/ResetPasswordPage.dart';
 import 'package:final_advanced_mobile/screens/ReserPassword/ResetPasswordSentPage.dart';
+import 'package:final_advanced_mobile/screens/TutorDetailPage/TutorDetailPage.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/TutorPage.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +26,11 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const CoursesPage());
     case 'tutor':
       return MaterialPageRoute(builder: (context) => const TutorPage());
+    case 'tutor_detail':
+      return MaterialPageRoute(builder: (context){
+        Map<String, Tutor> arg = settings.arguments as Map<String, Tutor>;
+        return TutorDetailPage(tutor: arg["tutor"] as Tutor);
+      });
     default:
       return MaterialPageRoute(builder: (context) => const LoginPage());
   }

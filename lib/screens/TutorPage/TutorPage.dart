@@ -1,3 +1,4 @@
+import 'package:final_advanced_mobile/constants/favourite.dart';
 import 'package:final_advanced_mobile/models/DateRange.dart';
 import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/screens/ReUse/MyAppBar.dart';
@@ -16,13 +17,11 @@ class TutorPage extends StatefulWidget {
 
 class _TutorPageState extends State<TutorPage> {
   List<Tutor> tutors = tutorLists;
-
+  TextEditingController _tutorNameController = TextEditingController();
+  TextEditingController _dateRangeController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-
-    final TextEditingController _tutorNameController = TextEditingController();
-    final TextEditingController _dateController = TextEditingController();
-    final TextEditingController _dateRangeController = TextEditingController();
     final List<String> _nationalOptions = [
       'Foreign Tutor',
       'Vietnamese Tutor',
@@ -45,6 +44,25 @@ class _TutorPageState extends State<TutorPage> {
     List<String> _nationalList = _nationalOptions;
     String _specialist = 'All';
 
+    final sortFavourite = (List<Tutor> tutors){
+      List<Tutor> _tutorFavourites = [];
+      List<Tutor> _tutorDontFavourites = [];
+      for(final tutor in tutors){
+        bool isFavourites = false;
+        for(final id in favourites){
+          if(tutor.id == id){
+            _tutorFavourites.add(tutor);
+            isFavourites = true;
+            break;
+          }
+        }
+        if(!isFavourites){
+          _tutorDontFavourites.add(tutor);
+        }
+      }
+      return [..._tutorFavourites,..._tutorDontFavourites];
+    };
+
     final search = (){
       var name = _tutorNameController.text;
       var nationals = _nationalList;
@@ -52,13 +70,12 @@ class _TutorPageState extends State<TutorPage> {
       var timeStart = _dateRangeController.text!="" ? _dateRangeController.text.substring(0,5): "";
       var timeEnd = _dateRangeController.text!="" ? _dateRangeController.text.substring(_dateRangeController.text.length-5,_dateRangeController.text.length):"";
       var specialistSearch = _specialist;
-
       List<Tutor> _tutors = [];
       List<Tutor> tutorDatas = tutorLists;
       for(final tutor in tutorDatas){
         bool check = true;
         if(name!=''){
-          if(tutor.name!=name){
+          if(!tutor.name.contains(name)){
             check=false;
             continue;
           }
@@ -130,7 +147,7 @@ class _TutorPageState extends State<TutorPage> {
         }
       }
       setState(() {
-        tutors = _tutors;
+        tutors = sortFavourite(_tutors);
       });
     };
 
@@ -155,6 +172,7 @@ class _TutorPageState extends State<TutorPage> {
       _specialist = 'All';
       _onTap();
     };
+
 
 
     return Scaffold(

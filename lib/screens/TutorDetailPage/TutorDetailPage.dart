@@ -8,9 +8,11 @@ import 'package:final_advanced_mobile/screens/TutorDetailPage/TutorSumaryInfo.da
 import 'package:flutter/material.dart';
 
 class TutorDetailPage extends StatefulWidget {
-  const TutorDetailPage({super.key
+  const TutorDetailPage({super.key,
+    required this.tutor
   });
 
+  final Tutor tutor;
 
   @override
   State<TutorDetailPage> createState() => _TutorPageState();
@@ -19,13 +21,13 @@ class TutorDetailPage extends StatefulWidget {
 class _TutorPageState extends State<TutorDetailPage> {
   @override
   Widget build(BuildContext context) {
-    final Tutor tutor = ModalRoute.of(context)!.settings.arguments as Tutor;
+    // final Tutor tutor = ModalRoute.of(context)!.settings.arguments as Tutor;
     return Scaffold(
         appBar: MyAppBar(),
         body: Center(
           child: ListView(
             children: [
-              TutorSumaryInfo(tutor: tutor,),
+              TutorSumaryInfo(tutor: widget.tutor,),
               TutorInfoAction(),
               Padding(
                 padding: const EdgeInsets.only(top: 25,left: 20,right: 20,bottom: 25),

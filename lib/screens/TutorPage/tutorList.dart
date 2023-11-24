@@ -1,3 +1,4 @@
+import 'package:final_advanced_mobile/constants/favourite.dart';
 import 'package:final_advanced_mobile/models/Tutor.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/tutorTile.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ class TutorList extends StatefulWidget {
 
 
 class _TutorListState extends State<TutorList> {
-  // List<Tutor> tutors = tutorLists;
 
   @override
   Widget build(BuildContext context) {

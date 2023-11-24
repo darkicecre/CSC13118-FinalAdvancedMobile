@@ -14,9 +14,17 @@ class MultiSelectChip extends StatefulWidget {
 }
 
 class _MultiSelectChipState extends State<MultiSelectChip> {
+  List<String> _selected = [];
+  bool isGenerate = false;
+
   @override
   Widget build(BuildContext context) {
-    List<String> selected = widget.isGenerateAll ? widget.options : [];
+    if(widget.isGenerateAll && !isGenerate){
+      setState(() {
+        _selected = widget.options;
+        isGenerate = true;
+      });
+    }
     List<String> generateOption(List<String> options,maxCharacter){
       List<String> _options = [];
       for(var i=0;i<options.length;i++){
@@ -37,12 +45,12 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
         child: DropDownMultiSelect(
           onChanged: (List<String> x) {
             setState(() {
-              selected = x;
+              _selected = x;
               widget.selectedCalback(x);
             });
           },
           options: generateOption(widget.options,widget.maxCharacter),
-          selectedValues: selected,
+          selectedValues: _selected,
           whenEmpty: widget.placeholder,
           decoration: InputDecoration(
             border: OutlineInputBorder(

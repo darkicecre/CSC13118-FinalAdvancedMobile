@@ -1,6 +1,6 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:final_advanced_mobile/constants/favourite.dart';
 import 'package:final_advanced_mobile/models/Tutor.dart';
-import 'package:final_advanced_mobile/screens/ReUse/Countries.dart';
 import 'package:final_advanced_mobile/screens/ReUse/ListChoiced.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/tutorInfo.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/tutorList.dart';
@@ -12,7 +12,7 @@ class TutorTile extends StatefulWidget {
   const TutorTile(
       {super.key,
         this.tutor = const Tutor("", "", "country", "id", "", 0, 0, 0,
-            [],[])
+            [],[]),
       });
 
   final Tutor tutor;
@@ -21,10 +21,18 @@ class TutorTile extends StatefulWidget {
 }
 
 class _TutorTileState extends State<TutorTile> {
-  var countries = Countries();
-  List<String> lists = listItemTiles;
+  bool _isFavourite = false;
   @override
   Widget build(BuildContext context) {
+    for(final favourite in favourites){
+      if(widget.tutor.id == favourite){
+        setState(() {
+          _isFavourite = true;
+        });
+        break;
+      }
+    }
+
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
@@ -60,14 +68,20 @@ class _TutorTileState extends State<TutorTile> {
               Expanded(
                 flex: 1,
                 child: IconButton(
-                  icon: FaIcon(
-                    FontAwesomeIcons.heart,
-                    size: 25,
+                  icon: Icon(
+                    _isFavourite ? Icons.favorite : Icons.favorite_outline,
                     color: Colors.blue,
+                    size: 25.0,
                   ),
                   tooltip: 'Increase volume by 10',
                   onPressed: () {
-                    setState(() {});
+                    if(_isFavourite){
+                      favourites.remove(widget.tutor.id);
+                    }
+                    else{
+                      favourites.add(widget.tutor.id);
+                    }
+                    setState(() {_isFavourite = !_isFavourite;});
                   },
                 ),
               )
@@ -77,7 +91,7 @@ class _TutorTileState extends State<TutorTile> {
               tutor: widget.tutor),
           Container(
             margin: EdgeInsets.only(left: 7, top: 7, bottom: 7),
-            child: ListChoiced(lists: lists),
+            child: ListChoiced(lists: widget.tutor.specialist),
           ),
           Container(
             margin: EdgeInsets.only(left: 20, right: 15, bottom: 25),

@@ -1,6 +1,6 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:final_advanced_mobile/constants/countries.dart';
 import 'package:final_advanced_mobile/models/Tutor.dart';
-import 'package:final_advanced_mobile/screens/ReUse/Countries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:readmore/readmore.dart';
@@ -19,7 +19,6 @@ class TutorSumaryInfo extends StatefulWidget {
 class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
   int countRating = 121;
 
-  var countries = Countries();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class _TutorSumaryInfoState extends State<TutorSumaryInfo> {
                           ),
                         ),
                         Text(
-                          countries.lists[widget.tutor.country] ?? '',
+                          countries[widget.tutor.country] ?? '',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w300),
                         )

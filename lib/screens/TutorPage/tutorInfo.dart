@@ -1,6 +1,6 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:final_advanced_mobile/constants/countries.dart';
 import 'package:final_advanced_mobile/models/Tutor.dart';
-import 'package:final_advanced_mobile/screens/ReUse/Countries.dart';
 import 'package:final_advanced_mobile/screens/TutorDetailPage/TutorDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -24,7 +24,6 @@ class TutorInfo extends StatefulWidget {
 }
 
 class _TutorInfoState extends State<TutorInfo> {
-  var countries = Countries();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +38,10 @@ class _TutorInfoState extends State<TutorInfo> {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
             ),
             onTap: (){
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(builder: (context) => const TutorDetailPage(),settings: RouteSettings(
-                  arguments: widget.tutor
-                )),
+                "tutor_detail",
+                arguments: {"tutor": widget.tutor},
               );
             },
           ),
@@ -61,7 +59,7 @@ class _TutorInfoState extends State<TutorInfo> {
                 ),
               ),
               Text(
-                countries.lists[widget.tutor.country] ?? '',
+                countries[widget.tutor.country] ?? '',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
               )
             ],
