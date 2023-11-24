@@ -11,6 +11,13 @@ const EnglishLang ={
   "login_already":"Already have an account?",
   "login_register":"Sign up",
   "login_login":"Log in",
+  "login_confirm_password":"Confirm Password",
+  "login_reset_password":"Reset Password",
+  "login_reset_password_description":"Please enter your email address to search for your account.",
+  "login_reset_password_sent_description":"Check your inbox for a link to reset your password.",
+  "login_reset_password_sent_back":"Return Log In Page",
+  "login_reset_password_submit":"Send reset link",
+
 };
 
 const VietnameseLang ={
@@ -26,4 +33,10 @@ const VietnameseLang ={
   "login_register":"Đăng ký",
   "login_already":"Đã có tài khoản?",
   "login_login":"Đăng nhập",
+  "login_confirm_password":"Nhập lại mật khẩu",
+  "login_reset_password":"Đặt lại mật khẩu",
+  "login_reset_password_description":"Vui lòng nhập email để tìm kiếm tài khoản của bạn.",
+  "login_reset_password_sent_description":"Kiểm tra hộp thư đến trong email để đặt lại mật khẩu của bạn.",
+  "login_reset_password_sent_back":"Trở về trang đăng nhập",
+  "login_reset_password_submit":"Xác nhận",
 };

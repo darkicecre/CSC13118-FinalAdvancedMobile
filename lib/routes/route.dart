@@ -1,6 +1,8 @@
 import 'package:final_advanced_mobile/screens/CoursesPage/CoursesPage.dart';
 import 'package:final_advanced_mobile/screens/LoginPage/LoginPage.dart';
 import 'package:final_advanced_mobile/screens/RegistPage/RegistPage.dart';
+import 'package:final_advanced_mobile/screens/ReserPassword/ResetPasswordPage.dart';
+import 'package:final_advanced_mobile/screens/ReserPassword/ResetPasswordSentPage.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/TutorPage.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,10 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LoginPage());
     case 'register':
       return MaterialPageRoute(builder: (context) => const RegistPage());
+    case 'reset_password':
+      return MaterialPageRoute(builder: (context) => const ResetPasswordPage());
+    case 'reset_password_sent':
+      return MaterialPageRoute(builder: (context) => const ResetPasswordSentPage());
     case 'forgot_password':
       return MaterialPageRoute(builder: (context) => const LoginPage());
     case 'course':

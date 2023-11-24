@@ -18,6 +18,7 @@ class RegistPage extends StatefulWidget {
 class _RegistPageState extends State<RegistPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController();
 
 
 
@@ -26,8 +27,41 @@ class _RegistPageState extends State<RegistPage> {
     final setting = Provider.of<SettingProvider>(context);
     final lang = setting.lang == "English" ? EnglishLang : VietnameseLang;
 
+    bool isExistedAccount(email){
+      for(final account in accounts){
+        if(email == account['email']){
+          return true;
+        }
+      }
+      return false;
+    }
+
     void signup(){
-      Navigator.pushNamedAndRemoveUntil(context, 'login', (Route<dynamic> route) => false);
+      if(email.text != '' &&password.text != ''&&confirmPassword.text != ''){ //validate
+        if(confirmPassword.text!= password.text){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Regist failed! Password and Confirm Password not same'),
+          ));
+          return;
+        }
+        if(!isExistedAccount(email.text)){ //Check if not existed other account same email
+          accounts.add({"email":email.text,"password":password.text});
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Regist successfuly!'),
+          ));
+          Navigator.pushNamedAndRemoveUntil(context, 'login', (Route<dynamic> route) => false);
+        }
+        else{
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Regist failed! Email existed'),
+          ));
+        }
+      }
+      else{
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Regist failed! Email or password is null'),
+        ));
+      }
     }
 
     return Scaffold(
@@ -77,6 +111,12 @@ class _RegistPageState extends State<RegistPage> {
               MyInputField(
                 title: lang['login_password'] ?? 'Password',
                 controller: password,
+                type: 'Password',
+                placeholder: '',
+              ),
+              MyInputField(
+                title: lang['login_confirm_password'] ?? 'Confirm Password',
+                controller: confirmPassword,
                 type: 'Password',
                 placeholder: '',
               ),

@@ -27,17 +27,18 @@ class _LoginPageState extends State<LoginPage> {
     final lang = setting.lang == "English" ? EnglishLang : VietnameseLang;
 
     void login(){
-      if(email.text == tutorAccount['email']&&password.text == tutorAccount['password']){
-        Navigator.pushNamedAndRemoveUntil(context, 'tutor', (Route<dynamic> route) => false);
+      for(final account in accounts){
+        if(email.text == account['email'] && password.text == account['password']){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Welcome to LetTutor!'),
+          ));
+          Navigator.pushNamedAndRemoveUntil(context, 'tutor', (Route<dynamic> route) => false);
+          return;
+        }
       }
-      else if(email.text == memberAccount['email']&&password.text == memberAccount['password']){
-        Navigator.pushNamedAndRemoveUntil(context, 'tutor', (Route<dynamic> route) => false);
-      }
-      else{
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Login failed! Email or password is wrong'),
-        ));
-      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Login failed! Email or password is wrong'),
+      ));
     }
 
     return Scaffold(
@@ -94,7 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.only(left: 30, top: 20),
                 alignment: Alignment.centerLeft,
                 child: InkWell(
-                  onTap: () => {},
+                  onTap: () => {
+                    Navigator.popAndPushNamed(context, 'reset_password')
+                  },
                   child: Text(
                     lang['login_forgot_pass'] ?? 'Forgot Password?',
                     textAlign: TextAlign.left,
