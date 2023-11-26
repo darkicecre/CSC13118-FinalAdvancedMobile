@@ -17,7 +17,10 @@ const EnglishLang ={
   "login_reset_password_sent_description":"Check your inbox for a link to reset your password.",
   "login_reset_password_sent_back":"Return Log In Page",
   "login_reset_password_submit":"Send reset link",
-
+  "profile_review": "Others review you",
+  "profile_change_password": "Change password",
+  "profile_account": "Account",
+  "profile_name":"Name",
 };
 
 const VietnameseLang ={
@@ -39,4 +42,8 @@ const VietnameseLang ={
   "login_reset_password_sent_description":"Kiểm tra hộp thư đến trong email để đặt lại mật khẩu của bạn.",
   "login_reset_password_sent_back":"Trở về trang đăng nhập",
   "login_reset_password_submit":"Xác nhận",
+  "profile_review": "Người khác đánh giá bạn",
+  "profile_change_password": "Đổi mật khẩu",
+  "profile_account": "Tài khoản",
+  "profile_name":"Tên",
 };

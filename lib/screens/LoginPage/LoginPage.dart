@@ -19,8 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     final setting = Provider.of<SettingProvider>(context);
@@ -32,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('Welcome to LetTutor!'),
           ));
+          setting.getProfile(email.text);
           Navigator.pushNamedAndRemoveUntil(context, 'tutor', (Route<dynamic> route) => false);
           return;
         }

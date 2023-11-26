@@ -1,3 +1,4 @@
+import 'package:final_advanced_mobile/providers/setting.dart';
 import 'package:final_advanced_mobile/screens/CoursesPage/CoursesPage.dart';
 import 'package:final_advanced_mobile/screens/HistoryPage/HistoryPage.dart';
 import 'package:final_advanced_mobile/screens/ReUse/MyAppBar.dart';
@@ -5,6 +6,7 @@ import 'package:final_advanced_mobile/screens/SchedulePage/SchedulePage.dart';
 import 'package:final_advanced_mobile/screens/TutorPage/TutorPage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key, this.isClickMenu = false});
@@ -12,6 +14,8 @@ class NavigationMenu extends StatelessWidget {
   final bool isClickMenu;
   @override
   Widget build(BuildContext context) {
+    final setting = Provider.of<SettingProvider>(context);
+
     return Scaffold(
       appBar: MyAppBar(
         isClickMenu: isClickMenu,
@@ -26,14 +30,16 @@ class NavigationMenu extends StatelessWidget {
                 width: 40,
                 height: 70,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://sandbox.api.lettutor.com/avatar/f569c202-7bbf-4620-af77-ecc1419a6b28avatar1686033849227.jpeg"),
+                  backgroundImage: NetworkImage(setting.profile.avatar),
                 ),
               ),
               title: Text(
-                'Pham Hoang Hai',
+                setting.profile.name,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
               ),
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(context, 'profile', (Route<dynamic> route) => false);
+              },
             ),
             ListTile(
               leading: Container(
