@@ -2,13 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyInputField extends StatelessWidget {
-  const MyInputField({super.key, this.title = 'TextField', this.type = 'Text', this.placeholder = 'Enter a search',required this.controller});
+  const MyInputField({super.key, this.title = 'TextField', this.type = 'Text', this.placeholder = 'Enter a search',required this.controller,this.required = false,this.disabled = false});
 
   final String title;
   final String type;
   final String placeholder;
   final TextEditingController controller;
   final bool passwordVisible = false;
+  final bool required;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,18 @@ class MyInputField extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            child: Text(
-              title.toUpperCase(),
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 14.0,
-                color: Color.fromRGBO(164, 176, 190,1)
-              ),
+            child: Row(
+              children: [
+                required == true ? Text("* ", style: TextStyle(color: Colors.red),) : SizedBox(),
+                Text(
+                  title.toUpperCase(),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Color.fromRGBO(164, 176, 190,1)
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
@@ -32,6 +39,7 @@ class MyInputField extends StatelessWidget {
             child: TextField(
               obscureText: type=='Password'?true:false,
               controller: controller,
+              enabled: !disabled,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(

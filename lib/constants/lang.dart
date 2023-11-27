@@ -21,6 +21,9 @@ const EnglishLang ={
   "profile_change_password": "Change password",
   "profile_account": "Account",
   "profile_name":"Name",
+  "profile_email":"Email Address",
+  "profile_country":"Country",
+  "profile_phone":"Phone Number",
 };
 
 const VietnameseLang ={
@@ -46,4 +49,7 @@ const VietnameseLang ={
   "profile_change_password": "Đổi mật khẩu",
   "profile_account": "Tài khoản",
   "profile_name":"Tên",
+  "profile_email":"Địa Chỉ Email",
+  "profile_country":"Quốc Gia",
+  "profile_phone":"Số điện thoại",
 };

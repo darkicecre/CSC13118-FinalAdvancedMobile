@@ -70,14 +70,15 @@ class NavigationMenu extends StatelessWidget {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
               onTap: (){
                 // Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => const NavigationMenu()),
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const TutorPage()),
-                );
+                // Navigator.pop(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const NavigationMenu()),
+                // );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const TutorPage()),
+                // );
+                Navigator.pushNamedAndRemoveUntil(context, 'tutor', (Route<dynamic> route) => false);
               },
             ),
             ListTile(
@@ -95,14 +96,7 @@ class NavigationMenu extends StatelessWidget {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
               onTap: (){
                 // Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => const NavigationMenu()),
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SchedulePage()),
-                );
+                Navigator.pushNamedAndRemoveUntil(context, 'schedules', (Route<dynamic> route) => false);
               },
             ),
             ListTile(
@@ -119,15 +113,7 @@ class NavigationMenu extends StatelessWidget {
               title: Text('History',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
               onTap: (){
-                // Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => const NavigationMenu()),
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HistoryPage()),
-                );
+                Navigator.pushNamedAndRemoveUntil(context, 'history', (Route<dynamic> route) => false);
               },
             ),
             ListTile(
@@ -144,15 +130,7 @@ class NavigationMenu extends StatelessWidget {
               title: Text('Courses',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
               onTap: (){
-                // Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => const NavigationMenu()),
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CoursesPage()),
-                );
+                Navigator.pushNamedAndRemoveUntil(context, 'course', (Route<dynamic> route) => false);
               },
             ),
             ListTile(

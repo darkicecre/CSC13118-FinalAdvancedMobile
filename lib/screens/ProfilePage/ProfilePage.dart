@@ -1,4 +1,5 @@
 import 'package:final_advanced_mobile/constants/account.dart';
+import 'package:final_advanced_mobile/constants/countries.dart';
 import 'package:final_advanced_mobile/constants/lang.dart';
 import 'package:final_advanced_mobile/providers/setting.dart';
 import 'package:final_advanced_mobile/screens/ReUse/MyAppBar.dart';
@@ -17,16 +18,22 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController countryController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final setting = Provider.of<SettingProvider>(context);
     final lang = setting.lang == "English" ? EnglishLang : VietnameseLang;
+    List<String> selectCountries = countries.values.toList();
+
+    setState(() {
+      nameController.text = setting.profile.name;
+    });
 
     return Scaffold(
-      appBar: MyAppBar(
-        isPermission: false,
-      ),
+      appBar: MyAppBar(),
       body: Center(
           child: ListView(
         children: [
@@ -41,13 +48,96 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundImage: NetworkImage(setting.profile.avatar),
                   ),
                 ),
-                Text(setting.profile.name, style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),),
-                Text("Id: "+setting.profile.id, style: TextStyle(fontSize: 14,color: Color.fromRGBO(0, 0, 0, 0.54)),),
-                Text(lang["profile_review"] ?? "Others review you", style: TextStyle(fontSize: 14,color: Colors.blue),),
-                Text(lang["profile_change_password"] ?? "Change password", style: TextStyle(fontSize: 14,color: Colors.blue),),
-                SizedBox(height: 20,),
-                Text(lang["profile_account"] ?? "Account"),
-                MyInputField(controller: nameController, title: lang["profile_name"]??"Name",placeholder: setting.profile.name,)
+                Text(
+                  setting.profile.name,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                ),
+                Container(
+                  child: Text(
+                    "Id: " + setting.profile.id,
+                    style: TextStyle(
+                        fontSize: 14, color: Color.fromRGBO(0, 0, 0, 0.54)),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: 30),
+                ),
+                Container(
+                  child: Text(
+                    lang["profile_review"] ?? "Others review you",
+                    style: TextStyle(fontSize: 14, color: Colors.blue),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: 30),
+                ),
+                Container(
+                  child: Text(
+                    lang["profile_change_password"] ?? "Change password",
+                    style: TextStyle(fontSize: 14, color: Colors.blue),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: 30),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: Text(lang["profile_account"] ?? "Account",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: 30),
+                ),
+                MyInputField(
+                  controller: nameController,
+                  title: lang["profile_name"] ?? "Name",
+                  placeholder: setting.profile.name,
+                  required: true,
+                ),
+                MyInputField(
+                  controller: emailController,
+                  title: lang["profile_email"] ?? "Email Address",
+                  placeholder: setting.profile.email,
+                  disabled: true,
+                ),
+                // MyInputField(
+                //   controller: countryController,
+                //   title: lang["profile_country"] ?? "Country",
+                //   placeholder: setting.profile.country,
+                //   required: true,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 30,left: 30, bottom: 10),
+                  child: Container(
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Text("* ", style: TextStyle(color: Colors.red),),
+                        Text(
+                          (lang["profile_country"] ?? "Country").toUpperCase(),
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              color: Color.fromRGBO(164, 176, 190,1)
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  child: DropdownMenu(
+                    initialSelection: selectCountries.first,
+                    dropdownMenuEntries: selectCountries.map<DropdownMenuEntry<String>>((String value) {
+                      return DropdownMenuEntry<String>(value: value, label: value);
+                    }).toList(),),
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: 30),
+                ),
+                MyInputField(
+                  controller: phoneController,
+                  title: lang["profile_phone"] ?? "Phone Number",
+                  placeholder: setting.profile.phone,
+                  required: true,
+                  disabled: true,
+                ),
               ],
             ),
             decoration: BoxDecoration(
